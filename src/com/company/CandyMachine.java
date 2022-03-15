@@ -38,4 +38,58 @@ public class CandyMachine {
             choice = console.nextInt();                  //Step 6c
         }//end while
     }
+
+    public static void showSelection()
+    {
+        System.out.println("*** Welcome to Shelly's "
+                + "Candy Shop ***");
+        System.out.println("To select an item, enter ");
+        System.out.println("1 for Candy");
+        System.out.println("2 for Chips");
+        System.out.println("3 for Gum");
+        System.out.println("4 for Cookies");
+        System.out.println("9 to exit");
+    }//end showSelection
+
+    public static void sellProduct(Dispenser product,
+                                   CashRegister cRegister)
+    {
+        int price;          //variable to hold the product price
+        int coinsInserted;  //variable to hold the amount entered
+        int coinsRequired;  //variable to show the extra amount
+        //needed
+
+        if (product.getCount() > 0)                  //Step 1
+        {
+            price = product.getProductCost();        //Step 1a
+            coinsRequired = price;                   //Step 1b
+            coinsInserted = 0;                       //Step 1c
+
+            while (coinsRequired > 0)                //Step 1d
+            {
+                System.out.print("Please deposit "
+                        + coinsRequired
+                        + " cents: ");        //Step 1d.i
+
+
+                coinsInserted = coinsInserted
+                        + console.nextInt();   //Step 1d.ii
+
+                coinsRequired = price
+                        - coinsInserted;       //Step 1d.iii
+            }
+
+            System.out.println();
+
+            cRegister.acceptAmount(coinsInserted);   //Step 1e
+            product.makeSale();                      //Step 1f
+
+            System.out.println("Collect your item "
+                    + "at the bottom and "
+                    + "enjoy.\n");          //Step 1g
+        }
+        else
+            System.out.println("Sorry this item "
+                    + "is sold out.\n");    //Step 2
+    }//end sellProduct
 }
