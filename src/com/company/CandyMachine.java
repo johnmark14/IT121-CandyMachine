@@ -5,7 +5,7 @@ import java.util.*;
 public class CandyMachine {
 
     static Scanner console = new Scanner(System.in);
-
+    static String testVariable;
     public static void main(String[] args) {
         CashRegister cashRegister = new CashRegister();  //Step 1
         Dispenser candy = new Dispenser(100, 50);        //Step 2
